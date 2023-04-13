@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etlim <etlim@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ethanlim <ethanlim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 14:36:00 by etlim             #+#    #+#             */
-/*   Updated: 2023/04/12 18:05:17 by etlim            ###   ########.fr       */
+/*   Updated: 2023/04/13 16:27:51 by ethanlim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include <mlx.h>
+# include "minilibx_macos/mlx.h"
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>

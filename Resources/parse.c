@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etlim <etlim@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ethanlim <ethanlim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:41:48 by etlim             #+#    #+#             */
-/*   Updated: 2023/04/12 18:35:22 by etlim            ###   ########.fr       */
+/*   Updated: 2023/04/13 16:23:06 by ethanlim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	pce_check(char **str)
 	return (0);
 }
 
+//checks that the walls of the map are 1
 int	wall_check(char *str)
 {
 	while (*str && *str != '\n')
@@ -51,6 +52,7 @@ int	wall_check(char *str)
 	return (0);
 }
 
+//checks the walls of the map and the length of each line
 int	line_check(char **str, int line_nbr)
 {
 	int	y;
@@ -93,6 +95,7 @@ char	**str_alloc(char *map, int *line_nbr)
 }
 
 //parses map and checks if the contents are valid
+//proceed to explanation on pce_check and line_check
 int	parsemap(char *map)
 {
 	char	**str;
