@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsemap.c                                         :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: etlim <etlim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/04 17:41:48 by etlim             #+#    #+#             */
-/*   Updated: 2023/04/04 19:41:23 by etlim            ###   ########.fr       */
+/*   Created: 2023/02/14 14:37:30 by etlim             #+#    #+#             */
+/*   Updated: 2023/04/05 18:36:09 by etlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
-char	**parse_map(char *map, int *line_nbr)
-{
-	int	fd;
-	int	**str;
-	int	i;
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdio.h>
 
-	fd = open(map, O_RDONLY);
-	while (get_next_line(fd))
-		*line_nbr += 1;
-	close(fd);
-}
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
+
+char			*get_next_line_bonus(int fd);
+char			*ft_strjoin(char *s1, char *s2);
+
+#endif
