@@ -7,7 +7,7 @@ CFLAGS	= -Wall -Wextra -Werror
 RM 		= rm -rf
 
 $(NAME):	$(OBJS)
-	$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
+	$(CC) $(CFLAGS) $(SRCS) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 $(OBJS_DIR)%.o: %.c 
 	mkdir -p $(OBJS_DIR)

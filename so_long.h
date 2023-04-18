@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ethanlim <ethanlim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: etlim <etlim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 14:36:00 by etlim             #+#    #+#             */
-/*   Updated: 2023/04/13 16:27:51 by ethanlim         ###   ########.fr       */
+/*   Updated: 2023/04/18 17:43:02 by etlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "minilibx_macos/mlx.h"
+// # include "minilibx_macos/mlx.h"
+# include <mlx.h>
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -43,8 +44,20 @@ typedef struct s_pos
 	int	y;
 }		t_pos;
 
+typedef struct s_info
+{
+	int	coins;
+	int	counter;
+	int	exit;
+}		t_info;
+
+typedef struct s_flood
+{
+	int 
+}
+
 //external functions
-void	ft_bzero(void *s, size_t n);
+void	*ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t count, size_t size);
 
 //parse.c
@@ -57,5 +70,7 @@ int		parsemap(char *map);
 char	**str_alloc(char *map, int *line_nbr);
 
 //pathcheck.c
+
+int	pathcheck(char **map, int line_nbr, t_pce pce);
 
 #endif

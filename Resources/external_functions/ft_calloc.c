@@ -6,7 +6,7 @@
 /*   By: etlim <etlim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 17:32:08 by etlim             #+#    #+#             */
-/*   Updated: 2023/04/05 19:28:01 by etlim            ###   ########.fr       */
+/*   Updated: 2023/04/17 15:17:33 by etlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	*ft_calloc(size_t count, size_t size)
 {
 	char	*z;
 
-	if (count != 0 && size >= SIZE_MAX / count)
+	if (count != 0 && count >= SIZE_MAX / size)
 		return (NULL);
-	z = malloc(size * (count));
+	z = malloc(size * count);
 	if (!z)
 		return (NULL);
 	ft_bzero(z, (size * count));
