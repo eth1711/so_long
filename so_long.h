@@ -6,7 +6,7 @@
 /*   By: etlim <etlim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 14:36:00 by etlim             #+#    #+#             */
-/*   Updated: 2023/04/18 17:43:02 by etlim            ###   ########.fr       */
+/*   Updated: 2023/04/19 18:55:28 by etlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,11 @@ typedef struct s_info
 
 typedef struct s_flood
 {
-	int 
-}
+	int	s_x;
+	int	s_y;
+	int	b_x;
+	int	b_y;
+}		t_flood;
 
 //external functions
 void	*ft_bzero(void *s, size_t n);
@@ -71,6 +74,9 @@ char	**str_alloc(char *map, int *line_nbr);
 
 //pathcheck.c
 
-int	pathcheck(char **map, int line_nbr, t_pce pce);
+int		pathcheck(char **map, int line_nbr, t_pce pce);
+void	locate_start(char **map, t_flood *fl, int line_nbr);
+int		checker(char **map, t_flood *fl, t_pos *pos, t_info info);
+int		floodfill(char **map, t_flood fl, t_pos pos, t_info *info);
 
 #endif
