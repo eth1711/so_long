@@ -6,7 +6,7 @@
 /*   By: etlim <etlim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:41:48 by etlim             #+#    #+#             */
-/*   Updated: 2023/04/17 16:40:53 by etlim            ###   ########.fr       */
+/*   Updated: 2023/04/21 19:50:14 by etlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,9 @@ int	parsemap(char *map)
 		return (0);
 	if (pce_check(str, &pce) && line_check(str, line_nbr))
 	{
+		pathcheck(str, line_nbr, pce)
 		return (1);
 	}
+	freemap(str);
 	return (0);
 }

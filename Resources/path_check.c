@@ -6,7 +6,7 @@
 /*   By: etlim <etlim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 17:52:02 by etlim             #+#    #+#             */
-/*   Updated: 2023/04/19 18:52:52 by etlim            ###   ########.fr       */
+/*   Updated: 2023/04/21 17:59:03 by etlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 //locates P(player) which will be the starting point of floodfill function
 void	locate_start(char **map, t_flood *fl, int line_nbr)
 {
-	fl->s_x = line_nbr;
-	fl->s_y = strline(map[0]);
+	fl->s_x = strline(map[0]);
+	fl->s_y = line_nbr;
 	fl->b_y = 1;
 	while (map[fl->b_y])
 	{
@@ -31,6 +31,17 @@ void	locate_start(char **map, t_flood *fl, int line_nbr)
 	}
 }
 
+//check whether the character in the map is valid
+int	valid_char(char c, t_info *info)
+{
+	if (c == 0 || c == 'C')
+		return (1);
+	else if (c == 'E')
+		info->exit += 1;
+	return (0);
+}
+
+//separated part of first part of floodfill
 int	checker(char **map, t_flood *fl, t_pos *pos, t_info info)
 {
 	fl->b_x = p->x;
@@ -40,12 +51,39 @@ int	checker(char **map, t_flood *fl, t_pos *pos, t_info info)
 	map[fl->b_y][fl->b_x] == 'F';
 }
 
+//Up, down , left , right
+//had to separate function into two because passed 25 lines
+//floods the map from player until reaches exit
 int	floodfill(char **map, t_flood fl, t_pos pos, t_info *info)
 {
 	checker(map, &fl, &pos, info);
-	
+	if (fl.b_y > 0 && valid_char(map[fl.b_y - 1][fl.b_x], info))
+	{
+		p.x = fl.b_x;
+		p.y = fl.b_y - 1;
+		floodfill(map, fl, pos, info);
+	}
+	if (fl.b_y < fl.s_y && valid_char(map[fl.b_y + 1][fl.b_x], info))
+	{
+		p.x = fl.b_x;
+		p.y = fl.b_y + 1;
+		floodfill(map, fl, pos, info);
+	}
+	if (fl.b_x > 0 && valid_char(map[fl.b_y][fl.b_x - 1], info))
+	{
+		p.x = fl.b_x - 1;
+		p.y = fl.b_y;
+		floodfill(map, fl, pos, info);
+	}
+	if (fl.b_x < fl.s_y && valid_char(map[fl.b_y][fl.b_x + 1], info))
+	{
+		p.x = fl.b_x + 1;
+		p.y = fl.b_y;
+		floodfill(map, fl, pos, info);
+	}
 }
 
+//checks the path whether accesible or not
 int	pathcheck(char **map, int line_nbr, t_pce pce)
 {
 	t_flood	fl;
@@ -57,5 +95,8 @@ int	pathcheck(char **map, int line_nbr, t_pce pce)
 	locate_start(map, &fl, line_nbr);
 	p.x = fl->b_x;
 	p.y = fl->b_y;
-	floodfill()
+	floodfill(map, fl, pos, &info);
+	if (info->exit == 1 && info.counter == info.coins)
+		return (1);
+	return (0);
 }
