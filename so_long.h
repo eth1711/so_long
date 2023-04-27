@@ -6,7 +6,7 @@
 /*   By: etlim <etlim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 14:36:00 by etlim             #+#    #+#             */
-/*   Updated: 2023/04/21 17:56:30 by etlim            ###   ########.fr       */
+/*   Updated: 2023/04/27 17:49:43 by etlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,45 @@
 
 // # include "minilibx_macos/mlx.h"
 # include <mlx.h>
-# include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
 # include "Resources/external_functions/ft_printf.h"
 # include "Resources/external_functions/get_next_line_bonus.h"
 
-typedef struct s_data
+enum
 {
-	void	*img;
-	char	*addr;
-	int		bits;
-	int		line;
-	int		endian;
-}			t_data;
+	ARROW_UP = 126,
+	ARROW_DOWN = 125,
+	ARROW_LEFT = 123,
+	ARROW_RIGHT = 124,
+	KEY_UP = 13,
+	KEY_DOWN = 1,
+	KEY_LEFT = 0,
+	KEY_RIGHT = 2,
+	KEY_ESC = 53,
+};
 
+typedef struct s_game
+{
+	void		*mlx;
+	void		*win;
+	char		**map;
+	int			move_count;
+	t_pos		p_pos;
+	t_pos		e_pos;
+	t_sprites	sprites;
+}				t_game;
+
+typedef struct s_sprites
+{
+	void	*wall;
+	void	*player;
+	void	*exit;
+	void	*exit_open;
+	void	*collectible;
+	void	*enemy;
+}			t_sprites;
 typedef struct s_pce
 {
 	int	p;
