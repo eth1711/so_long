@@ -6,7 +6,7 @@
 /*   By: etlim <etlim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 14:36:00 by etlim             #+#    #+#             */
-/*   Updated: 2023/04/27 17:49:43 by etlim            ###   ########.fr       */
+/*   Updated: 2023/04/28 14:22:41 by etlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ enum
 	KEY_LEFT = 0,
 	KEY_RIGHT = 2,
 	KEY_ESC = 53,
+	IMG_SIZE = 64,
 };
 
 typedef struct s_game
@@ -40,6 +41,8 @@ typedef struct s_game
 	void		*win;
 	char		**map;
 	int			move_count;
+	int			coin_count;
+	t_pos		size;
 	t_pos		p_pos;
 	t_pos		e_pos;
 	t_sprites	sprites;
