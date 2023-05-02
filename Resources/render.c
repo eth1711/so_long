@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etlim <etlim@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ethanlim <ethanlim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 17:59:56 by etlim             #+#    #+#             */
-/*   Updated: 2023/04/28 14:35:39 by etlim            ###   ########.fr       */
+/*   Updated: 2023/04/30 13:28:05 by ethanlim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ void	init_display(t_game *game, char	*str)
 	game->size.x = strline(game->map[0]);
 	pce_locate(game);
 	game->mlx = mlx_init();
-	game->win = mlx_new_window(game->mlx, IMG_SIZE * game->size.x, IMG_SIZE *  );
+	game->win = mlx_new_window(game->mlx, IMG_SIZE * game->size.x,
+			IMG_SIZE * game->size.y, "My Map");
 	init_images(game);
 	
 }
