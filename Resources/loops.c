@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   loops.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: etlim <etlim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/04 15:46:21 by etlim             #+#    #+#             */
-/*   Updated: 2023/04/13 16:54:07 by etlim            ###   ########.fr       */
+/*   Created: 2023/05/02 16:20:55 by etlim             #+#    #+#             */
+/*   Updated: 2023/05/02 19:27:45 by etlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-int	main(int ac, char **av)
+int	p_input(int keycode, t_game *game)
 {
-	if (ac == 2)
-	{
-		if (parsemap(av[1]))
-		{
-			ft_printf("Valid Map!\n");
-			return (0);
-		}
-		ft_printf("Invalid Map!\n");
-		return (0);
-	}
-	ft_printf("Not enough arguments!\n");
-	return (0);
+	if (keycode == ARROW_UP)
+		move_check
+		exit_prog(game, 0);
+}
+
+void	loop(char *str)
+{
 }

@@ -6,7 +6,7 @@
 /*   By: etlim <etlim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 14:36:00 by etlim             #+#    #+#             */
-/*   Updated: 2023/04/28 14:22:41 by etlim            ###   ########.fr       */
+/*   Updated: 2023/05/02 16:44:58 by etlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct s_pce
 	int	p;
 	int	c;
 	int	e;
+	int	x;
 }		t_pce;
 
 typedef struct s_pos

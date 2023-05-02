@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   freemap.c                                          :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: etlim <etlim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/21 17:54:02 by etlim             #+#    #+#             */
-/*   Updated: 2023/04/21 17:56:02 by etlim            ###   ########.fr       */
+/*   Created: 2023/04/04 15:46:21 by etlim             #+#    #+#             */
+/*   Updated: 2023/05/02 16:22:23 by etlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	freemap(char **str)
-{
-	int	i;
+#include "../so_long.h"
 
-	i = -1;
-	while (str[++i])
-		free (str[y]);
-	free (str[y]);
+int	main(int ac, char **av)
+{
+	if (ac == 2)
+	{
+		if (parsemap(av[1]))
+		{
+			ft_printf("Valid Map!\n");
+			loop(av[1]);
+			return (0);
+		}
+		ft_printf("Invalid Map!\n");
+		return (0);
+	}
+	ft_printf("Invalid number of arguments!\n");
+	return (0);
 }
