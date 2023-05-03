@@ -6,7 +6,7 @@
 /*   By: etlim <etlim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 14:36:00 by etlim             #+#    #+#             */
-/*   Updated: 2023/05/02 16:44:58 by etlim            ###   ########.fr       */
+/*   Updated: 2023/05/03 16:15:08 by etlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_game
 	int			coin_count;
 	t_pos		size;
 	t_pos		p_pos;
+	t_pos		x_pos;
 	t_pos		e_pos;
 	t_sprites	sprites;
 }				t_game;

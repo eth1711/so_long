@@ -6,7 +6,7 @@
 /*   By: etlim <etlim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 17:59:56 by etlim             #+#    #+#             */
-/*   Updated: 2023/05/02 19:33:44 by etlim            ###   ########.fr       */
+/*   Updated: 2023/05/03 16:17:05 by etlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	pce_locate(t_game *game)
 	game->coin_count = 0;
 	while (game->map[++y])
 	{
-		x = 0;
-		while (game->map[y][x] && game->map[y][x] != '\n')
+		x = -1;
+		while (game->map[y][++x] && game->map[y][x] != '\n')
 		{
 			if (game->map[y][x] == 'P')
 			{
@@ -36,7 +36,26 @@ void	pce_locate(t_game *game)
 				game->e_pos.x = x;
 				game->e_pos.y = y;
 			}
-			x++;
+		}
+	}
+}
+
+void	x_locate(t_game *game)
+{
+	int	x;
+	int	y;
+
+	y = -1;
+	while (game->map[++y])
+	{
+		x = -1;
+		while (game->map[y][++x] && game->map[y][x] != '\n')
+		{
+			if (game->map[y][x] == 'X')
+			{
+				game->x_pos.x = x;
+				game->x_pos.y = y;
+			}
 		}
 	}
 }
