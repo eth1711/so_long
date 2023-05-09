@@ -3,21 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etlim <etlim@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ethanlim <ethanlim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 17:54:02 by etlim             #+#    #+#             */
-/*   Updated: 2023/05/02 16:20:15 by etlim            ###   ########.fr       */
+/*   Updated: 2023/05/09 00:28:53 by ethanlim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	freemap(char **str)
+#include "../so_long.h"
+
+void	freemap(char **str)
 {
 	int	i;
 
 	i = -1;
 	while (str[++i])
-		free (str[y]);
-	free (str[y]);
+		free (str[i]);
+	free (str[i]);
 }
 
 int	exit_prog(t_game *game, int i)
