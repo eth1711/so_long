@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   loops.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ethanlim <ethanlim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: etlim <etlim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 16:20:55 by etlim             #+#    #+#             */
-/*   Updated: 2023/05/09 00:53:12 by ethanlim         ###   ########.fr       */
+/*   Updated: 2023/05/09 17:07:40 by etlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-void render(t_game *game)
+void	render(t_game *game)
 {
-	t_pos pos;
-	char *str;
+	t_pos	pos;
+	char	*str;
 
 	pos.y = 0;
-	while(game->map[pos.y])
+	while (game->map[pos.y])
 	{
 		pos.x = 0;
 		while (++game->map[pos.y][++pos.x] && game->map[pos.y][pos.x] == '\0')
@@ -45,9 +45,8 @@ void	movep_check(t_game *game, int y, int x)
 		game->p_pos.x = x;
 		game->p_pos.y = y;
 		game->move_count++;
-		render(game);		
+		render(game);
 	}
-		
 }
 
 void	movex_check(t_game *game, int y, int x)
@@ -62,7 +61,7 @@ void	movex_check(t_game *game, int y, int x)
 		game->map[y][x] = 'X';
 		game->x_pos.x = x;
 		game->x_pos.y = y;
-		render(game);
+	render(game);
 }
 
 int	px_input(int keycode, t_game *game)
@@ -90,7 +89,7 @@ int	px_input(int keycode, t_game *game)
 
 void	loop(char *str)
 {
-	t_game game;
+	t_game	game;
 
 	init_display(&game, str);
 	mlx_hook(game.win, 17, 0, exit_prog, &game);
