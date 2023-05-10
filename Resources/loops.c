@@ -6,7 +6,7 @@
 /*   By: etlim <etlim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 16:20:55 by etlim             #+#    #+#             */
-/*   Updated: 2023/05/09 17:07:40 by etlim            ###   ########.fr       */
+/*   Updated: 2023/05/10 20:11:33 by etlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,20 @@ void	render(t_game *game)
 	while (game->map[pos.y])
 	{
 		pos.x = 0;
-		while (++game->map[pos.y][++pos.x] && game->map[pos.y][pos.x] == '\0')
+		mlx_clear_window(game->mlx, game->win);
+		while (game->map[pos.y][pos.x] && game->map[pos.y][pos.x] == '\0')
 		{
-			put_img(game, game->map[pos.y][pos.x], 64 * pos.x, 64 * pos.y);
+			put_img(game, game->map[pos.y][pos.x], (64 * pos.y), (64 * pos.x));
 			++pos.x;
 		}
 		pos.y++;
 	}
+	str = ft_strdup("moves:");
+	mlx_string_put(game->mlx, game->win, 0, 0, 0x00FF00, str);
+	free(str);
+	str = ft_itoa(game->move_count);
+	mlx_string_put(game->mlx, game->win, 65, 0, 0x00FF00, str);
+	free(str);
 }
 
 void	movep_check(t_game *game, int y, int x)
@@ -45,8 +52,8 @@ void	movep_check(t_game *game, int y, int x)
 		game->p_pos.x = x;
 		game->p_pos.y = y;
 		game->move_count++;
-		render(game);
 	}
+	render(game);
 }
 
 void	movex_check(t_game *game, int y, int x)
@@ -57,10 +64,12 @@ void	movex_check(t_game *game, int y, int x)
 	if (game->map[y][x] == 'P')
 		exit_prog(game, 0);
 	else
+	{
 		game->map[game->x_pos.y][game->x_pos.x] = 0;
 		game->map[y][x] = 'X';
 		game->x_pos.x = x;
 		game->x_pos.y = y;
+	}
 	render(game);
 }
 
@@ -92,7 +101,8 @@ void	loop(char *str)
 	t_game	game;
 
 	init_display(&game, str);
-	mlx_hook(game.win, 17, 0, exit_prog, &game);
 	mlx_key_hook(game.win, px_input, &game);
+	mlx_hook(game.win, 17, 0, exit_prog, &game);
+	render(&game);
 	mlx_loop(game.mlx);
 }

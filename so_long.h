@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ethanlim <ethanlim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: etlim <etlim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 14:36:00 by etlim             #+#    #+#             */
-/*   Updated: 2023/05/09 00:36:13 by ethanlim         ###   ########.fr       */
+/*   Updated: 2023/05/10 20:07:30 by etlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,15 +92,18 @@ typedef struct s_game
 void	*ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t count, size_t size);
 int		strline(char *str);
+char	*ft_strdup(char *s1);
+char	*ft_itoa(int n);
+int		ft_strlen(char *s);
 
 //free.c
-void		freemap(char **str);
+void	freemap(char **str);
 int		exit_prog(t_game *game, int i);
 
 //init.c
 void	pce_locate(t_game *game);
 void	x_locate(t_game *game);
-void	init_images(t_game *game);
+void	init_images(t_game *game, int x, int y);
 void	init_display(t_game *game, char	*str);
 
 //loops.c
@@ -111,7 +114,7 @@ void	loop(char *str);
 int		px_input(int keycode, t_game *game);
 
 //main.c
-int	main(int ac, char **av);
+int		main(int ac, char **av);
 
 //parse.c
 int		pce_check(char **str, t_pce	*pce);
@@ -129,6 +132,6 @@ int		pathcheck(char **map, int line_nbr, t_pce pce);
 int		valid_char(char c, t_info *info);
 
 //put_img.c
-void put_img(t_game *game, char c, int x, int y);
+void	put_img(t_game *game, char c, int x, int y);
 
 #endif

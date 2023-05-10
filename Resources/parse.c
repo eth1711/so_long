@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ethanlim <ethanlim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: etlim <etlim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:41:48 by etlim             #+#    #+#             */
-/*   Updated: 2023/05/08 23:55:18 by ethanlim         ###   ########.fr       */
+/*   Updated: 2023/05/10 19:36:26 by etlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ int	pce_check(char **str, t_pce	*pce)
 	pce->e = 0;
 	while (str[++pos.y])
 	{
-		pos.x = 0;
-		while ((str[pos.y][pos.x] != '\0') && (str[pos.y][pos.x] != '\n'))
+		pos.x = -1;
+		while ((str[pos.y][++pos.x] != '\0') && (str[pos.y][pos.x] != '\n'))
 		{
-			if (str[pos.y][pos.x] == 'P')
+			if (str[pos.y][pos.x] == 'P' || str[pos.y][pos.x] == 'X')
 				pce->p += 1;
 			else if (str[pos.y][pos.x] == 'C')
 				pce->c += 1;
@@ -34,10 +34,9 @@ int	pce_check(char **str, t_pce	*pce)
 				pce->e += 1;
 			else if ((str[pos.y][pos.x] != '1') && (str[pos.y][pos.x] != '0'))
 				return (0);
-		pos.x++;
 		}
 	}
-	if ((pce->p != 1) || (pce->c < 1) || (pce->e != 1))
+	if ((pce->p > 2) || (pce->c < 1) || (pce->e != 1))
 		return (0);
 	return (1);
 }
@@ -82,13 +81,19 @@ char	**str_alloc(char *map, int *line_nbr)
 	char	**str;
 	int		fd;
 	int		i;
+	char	*ptr;
 
 	i = -1;
 	fd = open(map, O_RDONLY);
 	if (fd < 0)
 		return (NULL);
-	while (get_next_line_bonus(fd))
+	ptr = get_next_line_bonus(fd);
+	while (ptr)
+	{
 		*line_nbr += 1;
+		free(ptr);
+		ptr = get_next_line_bonus(fd);
+	}
 	close(fd);
 	str = ft_calloc(sizeof(char *), (*line_nbr + 1));
 	str[*line_nbr] = NULL;
