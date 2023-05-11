@@ -6,25 +6,44 @@
 /*   By: etlim <etlim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 16:20:55 by etlim             #+#    #+#             */
-/*   Updated: 2023/05/10 20:11:33 by etlim            ###   ########.fr       */
+/*   Updated: 2023/05/11 23:45:02 by etlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+
+// void	printmap(char **map)
+// {
+// 	int	i;
+// 	int	y = 0;
+// 	while (map[y])
+// 	{
+// 		i = 0;
+// 		while(map[y][i])
+// 		{
+// 			ft_printf("%c]", map[y][i]);
+// 			i++;
+// 		}
+// 		map++;
+// 	}
+// 	ft_printf("\n");
+// }
 
 void	render(t_game *game)
 {
 	t_pos	pos;
 	char	*str;
 
+	animate_coin(game);
+	animate_player(game);
 	pos.y = 0;
+	mlx_clear_window(game->mlx, game->win);
 	while (game->map[pos.y])
 	{
 		pos.x = 0;
-		mlx_clear_window(game->mlx, game->win);
-		while (game->map[pos.y][pos.x] && game->map[pos.y][pos.x] == '\0')
+		while (game->map[pos.y][pos.x] != '\n' && game->map[pos.y][pos.x])
 		{
-			put_img(game, game->map[pos.y][pos.x], (64 * pos.y), (64 * pos.x));
+			put_img(game, game->map[pos.y][pos.x], (64 * pos.x), (64 * pos.y));
 			++pos.x;
 		}
 		pos.y++;
@@ -41,13 +60,15 @@ void	movep_check(t_game *game, int y, int x)
 {
 	if (game->map[y][x] == '1' || game->map[y][x] == 'E')
 		return ;
+	if (game->map[y][x] == 'X')
+		exit_prog (game, 0);
 	if (game->map[y][x] == 'O')
 		exit_prog (game, 1);
 	else
 	{
-		if (game->map[y][x] == 'C' || --game->coin_count == 0)
+		if (game->map[y][x] == 'C' && --game->coin_count == 0)
 					game->map[game->e_pos.y][game->e_pos.x] = 'O';
-		game->map[game->p_pos.y][game->p_pos.x] = 0;
+		game->map[game->p_pos.y][game->p_pos.x] = '0';
 		game->map[y][x] = 'P';
 		game->p_pos.x = x;
 		game->p_pos.y = y;
@@ -65,7 +86,7 @@ void	movex_check(t_game *game, int y, int x)
 		exit_prog(game, 0);
 	else
 	{
-		game->map[game->x_pos.y][game->x_pos.x] = 0;
+		game->map[game->x_pos.y][game->x_pos.x] = '0';
 		game->map[y][x] = 'X';
 		game->x_pos.x = x;
 		game->x_pos.y = y;

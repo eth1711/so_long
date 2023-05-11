@@ -6,15 +6,15 @@
 /*   By: etlim <etlim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 14:36:00 by etlim             #+#    #+#             */
-/*   Updated: 2023/05/10 20:07:30 by etlim            ###   ########.fr       */
+/*   Updated: 2023/05/11 23:43:41 by etlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "minilibx_macos/mlx.h"
-// # include <mlx.h>
+// # include "minilibx_macos/mlx.h"
+# include <mlx.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
@@ -68,9 +68,13 @@ typedef struct s_sprites
 {
 	void	*wall;
 	void	*player;
+	void	*player1;
+	void	*player2;
 	void	*exit;
 	void	*exit_open;
 	void	*collectible;
+	void	*collectible1;
+	void	*collectible2;
 	void	*enemy;
 }			t_sprites;
 
@@ -124,7 +128,7 @@ int		parsemap(char *map);
 char	**str_alloc(char *map, int *line_nbr);
 
 //pathcheck.c
-
+void	printmap(char **map);
 void	locate_start(char **map, t_flood *fl, int line_nbr);
 void	checker(char **map, t_flood *fl, t_pos *p, t_info *info);
 void	floodfill(char **map, t_flood fl, t_pos pos, t_info *info);
@@ -133,5 +137,8 @@ int		valid_char(char c, t_info *info);
 
 //put_img.c
 void	put_img(t_game *game, char c, int x, int y);
+void	animate_coin(t_game *game);
+void	animate_player(t_game *game);
+// void	file_to_img(t_game *game, char *str, void **p);
 
 #endif

@@ -1,22 +1,22 @@
-NAME	= so_long
-OBJS	= $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
-OBJS_DIR= objs/
-SRCS	= test.c
-CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror
-RM 		= rm -rf
+NAME		= so_long
+OBJS		= $(SRCS:.c=.o)
+SRCS		= $(wildcard Resources/*.c) $(wildcard Resources/external_functions/*.c)
+INCLUDES 	= -IResources/external_functions
+CC			= gcc
+CFLAGS		= -Wall -Wextra -Werror
+MLX			= -lmlx -framework OpenGL -framework AppKit
+RM			= rm -rf
 
-$(NAME):	$(OBJS)
-	$(CC) $(CFLAGS) $(SRCS) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
-
-$(OBJS_DIR)%.o: %.c 
-	mkdir -p $(OBJS_DIR)
+%.o: %.c 
 	$(CC) $(CFLAGS) -c $< -o $@
+
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) $(INCLUDES) $(MLX) -o $(NAME)
 
 all :	$(NAME)
 
 clean : 
-	$(RM) $(OBJS_DIR)
+	$(RM) $(OBJS)
 
 fclean : clean
 	$(RM) $(NAME)
